@@ -8,12 +8,9 @@ start:
     int 10h
     mov si, offset chessboard_data
     mov di, offset chessboard
-
-    ; Настройка доски
     call init_chessboard
 
 main_loop:
-    ; Основной цикл игры
     call display_chessboard 
     call player_move       
     call update_chessboard 
@@ -23,7 +20,6 @@ init_chessboard:
     mov cx, 8              
     mov bx, 0              
 fill_board:
-    ; Заполняем клетки с фигурами
     mov al, [si]         
     mov [di], al         
     inc si
@@ -50,7 +46,6 @@ display_empty_square:
 
 display_continue:
     loop display_loop
-    ; Переход на новую строку
     mov ah, 02h
     int 21h
     ret
@@ -103,4 +98,5 @@ chessboard db 64 dup(20h)
 
 code ends
 end start
+
 
